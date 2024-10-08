@@ -1,7 +1,6 @@
 package ru.javawebinar.topjava.repository;
 
 import ru.javawebinar.topjava.model.Meal;
-import ru.javawebinar.topjava.model.MealTo;
 import ru.javawebinar.topjava.util.MealsUtil;
 
 import java.util.*;
@@ -11,10 +10,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class InMemoryMealRepository implements MealRepository {
     private AtomicInteger counter = new AtomicInteger(0);
     private Map<Integer, Meal> repository = new ConcurrentHashMap<>();
-    ;
 
     {
-        MealsUtil.MEALS.forEach(this::save);
+        MealsUtil.meals.forEach(this::save);
     }
 
     @Override
@@ -38,7 +36,7 @@ public class InMemoryMealRepository implements MealRepository {
     }
 
     @Override
-    public Collection<Meal> allMeals() {
+    public Collection<Meal> getAll() {
         return repository.values();
     }
 }
